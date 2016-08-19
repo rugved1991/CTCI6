@@ -27,8 +27,29 @@ public class PermutationOfPalindrome {
 
    public static boolean checkPermutationOfPalindrome(String str)
    {
-       int[] table=buildCharFrequency(str);
-       return maxOneOdd(table);
+       //int[] table=buildCharFrequency(str);
+       //return maxOneOdd(table);
+
+       int[] table=new int[Character.getNumericValue('z') - Character.getNumericValue('a') + 1];
+       int countOdd=0;
+
+       for(char c: str.toCharArray())
+       {
+           int x=getCharNum(c);
+           if(x!=-1)
+           {
+               table[x]++;
+               if(table[x]%2==1)
+               {
+                   countOdd++;
+               }
+               else
+               {
+                   countOdd--;
+               }
+           }
+       }
+        return countOdd <= 1;
    }
 
    public static int[] buildCharFrequency(String str)
